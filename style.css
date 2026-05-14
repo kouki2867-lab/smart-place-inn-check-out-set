@@ -340,3 +340,115 @@ tbody tr:not(.empty-state-row):hover {
 .row-appear:nth-child(4) { animation-delay: 0.2s; }
 .row-appear:nth-child(5) { animation-delay: 0.25s; }
 .row-appear:nth-child(6) { animation-delay: 0.3s; }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem 0.5rem;
+  }
+
+  .app-container {
+    gap: 1.5rem;
+  }
+
+  .header-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .glass-card {
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  /* Table to Card conversion */
+  .table-container {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    background: var(--card-bg);
+    border: 2px solid white;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+    position: relative;
+    padding-left: 50% !important;
+    text-align: right;
+    white-space: normal;
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .empty-state-row td {
+    padding-left: 1rem !important;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .empty-state-row td::before {
+    display: none;
+  }
+
+  .highlight-sets {
+    background: rgba(244, 114, 182, 0.05);
+    padding: 0.25rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .inventory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .primary-btn {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}

@@ -63,11 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const setsClass = setsToBring > 0 ? 'highlight-sets' : '';
 
       tr.innerHTML = `
-        <td><strong>${item.name}</strong> <span style="font-size: 0.8rem; color: var(--text-muted);">(${item.perSet}枚/セット)</span></td>
-        <td>${totalNeeded} 枚</td>
-        <td>${stock} 枚</td>
-        <td class="${setsClass}">${setsToBring} セット</td>
-        <td class="${remClass}">${remainder} 枚</td>
+        <td data-label="アイテム名"><strong>${item.name}</strong> <span style="font-size: 0.8rem; color: var(--text-muted);">(${item.perSet}枚/セット)</span></td>
+        <td data-label="必要総数">${totalNeeded} 枚</td>
+        <td data-label="前日残">${stock} 枚</td>
+        <td data-label="持ってくるセット数" class="${setsClass}">${setsToBring} セット</td>
+        <td data-label="余る数" class="${remClass}">${remainder} 枚</td>
       `;
 
       resultBody.appendChild(tr);
