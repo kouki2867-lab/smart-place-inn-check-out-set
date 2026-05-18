@@ -1,0 +1,30 @@
+{
+  "short_name": "リネン計算",
+  "name": "スマート客室リネン計算ツール - Linen Replenishment Calculator",
+  "description": "ホテルの客室清掃で使用するリネン類の必要数・発注セット数を自動計算し、補充管理をスマート化するツール。",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0b0c10",
+  "theme_color": "#863bff",
+  "display": "standalone",
+  "orientation": "portrait"
+}

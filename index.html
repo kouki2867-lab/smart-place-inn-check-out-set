@@ -3,20 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>スマート客室リネン計算ツール</title>
-  <meta name="description" content="ホテルの客室清掃で使用するリネン類の必要数・発注セット数を自動計算するツール">
+  <title>スマート客室リネン計算ツール | Linen Replenishment Calculator</title>
   
-  <!-- OGP (Open Graph Protocol) 設定 -->
-  <meta property="og:title" content="スマート客室リネン計算ツール">
-  <meta property="og:description" content="ホテルの客室清掃で使用するリネン類の必要数・発注セット数を自動計算するツール">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://your-deployment-url.vercel.app">
-  <meta property="og:site_name" content="客室リネン計算ツール">
-  <!-- og:image は実際のURLが決まったら画像パスを設定します -->
-  <!-- <meta property="og:image" content="https://your-deployment-url.vercel.app/og-image.png"> -->
+  <!-- SEO 基本設定 -->
+  <meta name="description" content="ホテルの客室清掃で使用するリネン類の必要数・発注セット数を本日の予定人数と前日残数から瞬時に自動計算。客室清掃の補充管理をミスなくスマート化するプロフェッショナル向けWebツール。">
+  <meta name="keywords" content="ホテル清掃, 客室清掃, リネン計算, 補充管理, シーツ, デュベカバー, アメニティ計算, 業務効率化, 宿泊業DX">
+  <meta name="author" content="Kouki Nakayama">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://smart-linen-calculator.vercel.app">
 
-  <!-- Favicon (絵文字を使った簡易ファビコン) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%25%22 y=%2250%25%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:80px;%22>🛏️</text></svg>">
+  <!-- OGP (Open Graph Protocol) 設定 - SNSシェア時の表示最適化 -->
+  <meta property="og:title" content="スマート客室リネン計算ツール">
+  <meta property="og:description" content="ホテルの客室清掃で使用するリネン類の必要数・発注セット数を予定人数から瞬時に自動計算。業務効率化と発注ミスを防ぐスマート補充管理ツール。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smart-linen-calculator.vercel.app">
+  <meta property="og:site_name" content="スマート客室リネン計算ツール">
+  <meta property="og:image" content="https://smart-linen-calculator.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- Twitter Card 設定 -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="スマート客室リネン計算ツール">
+  <meta name="twitter:description" content="予定人数から必要なシーツやタオルなどの必要セット数を即座に算出する業務効率化ツール。">
+  <meta name="twitter:image" content="https://smart-linen-calculator.vercel.app/og-image.png">
+
+  <!-- ファビコン・アプリアイコン設定 -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <!-- PWA (Progressive Web App) マニフェスト設定 -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#863bff">
+
+  <!-- 構造化データ (JSON-LD) - 検索結果でのリッチスニペット用 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "スマート客室リネン計算ツール",
+    "alternateName": "Smart Linen Replenishment Calculator",
+    "url": "https://smart-linen-calculator.vercel.app",
+    "image": "https://smart-linen-calculator.vercel.app/og-image.png",
+    "description": "ホテルの客室清掃で使用するリネン類の必要数・発注セット数を本日の予定人数と前日残数から瞬時に自動計算。客室清掃の補充管理をミスなくスマート化するプロフェッショナル向けWebツール。",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires HTML5 compatible browser",
+    "author": {
+      "@type": "Person",
+      "name": "Kouki Nakayama"
+    }
+  }
+  </script>
 
   <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">

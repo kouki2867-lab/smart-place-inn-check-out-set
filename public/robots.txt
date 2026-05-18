@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# 本番公開時に実際のURLに合わせて更新してください
+Sitemap: https://smart-linen-calculator.vercel.app/sitemap.xml
