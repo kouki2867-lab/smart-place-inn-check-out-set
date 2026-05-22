@@ -33,8 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // テーブルの中身をクリア
     resultBody.innerHTML = '';
 
-    // 人数が0の場合は警告などを出しても良いが、今回はそのまま0として計算
-    
+    // サマリー用のデータを集める配列
+    const summaryItems = [];
+
     itemsConfig.forEach((item, index) => {
       const stockInput = document.getElementById(item.inputId).value;
       const stock = parseInt(stockInput, 10) || 0;
@@ -51,6 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // 余り（ストック） ＝ (持ってくるセット数 × 1セットあたりの数量) ＋ 前日の残数 － 必要総数
       const remainder = (setsToBring * item.perSet) + stock - totalNeeded;
+
+      if (setsToBring > 0) {
+        summaryItems.push({
+          name: item.name,
+          sets: setsToBring,
+          perSet: item.perSet
+        });
+      }
 
       // 行の生成
       const tr = document.createElement('tr');
@@ -72,6 +81,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
       resultBody.appendChild(tr);
     });
+
+    // サマリーの表示更新
+    const summaryWrapper = document.getElementById('summaryWrapper');
+    const summaryList = document.getElementById('summaryList');
+    if (summaryWrapper && summaryList) {
+      summaryList.innerHTML = '';
+      if (summaryItems.length > 0) {
+        summaryWrapper.style.display = 'block';
+        summaryItems.forEach(item => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'summary-item';
+          itemEl.innerHTML = `
+            <span class="summary-item-name">${item.name}</span>
+            <span class="summary-item-sets"><strong>${item.sets}</strong> セット <span class="summary-item-detail">(${item.sets * item.perSet}枚)</span></span>
+          `;
+          summaryList.appendChild(itemEl);
+        });
+      } else {
+        // すべて0セットの場合
+        summaryWrapper.style.display = 'block';
+        summaryList.innerHTML = `
+          <div class="summary-empty">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            追加で持ってくるリネンはありません（在庫で足りています）
+          </div>
+        `;
+      }
+    }
     
     // スクロールして結果を見やすくする（モバイル向け）
     const resultSection = document.querySelector('.result-section');

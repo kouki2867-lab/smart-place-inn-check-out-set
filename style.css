@@ -24,6 +24,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
 body {
   font-family: 'Inter', 'Noto Sans JP', sans-serif;
   background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
@@ -33,21 +39,29 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: 2rem 1rem;
-  overflow-x: hidden;
   position: relative;
 }
 
-/* Dynamic animated background elements */
-body::before, body::after {
-  content: '';
+/* Fixed background decorations layer to avoid scrolling container overflow */
+.bg-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-circle {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  z-index: -1;
   animation: float 20s infinite alternate ease-in-out;
 }
 
-body::before {
+.bg-circle-1 {
   width: 400px;
   height: 400px;
   background: rgba(244, 114, 182, 0.4); /* Pink blur */
@@ -55,7 +69,7 @@ body::before {
   left: -50px;
 }
 
-body::after {
+.bg-circle-2 {
   width: 500px;
   height: 500px;
   background: rgba(167, 139, 250, 0.3); /* Purple blur */
@@ -109,6 +123,7 @@ h1 {
   letter-spacing: 0.05em;
   background: linear-gradient(to right, #ec4899, #8b5cf6);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
 }
@@ -396,13 +411,15 @@ tbody tr:not(.empty-state-row):hover {
     border: none;
     border-bottom: 1px solid rgba(226, 232, 240, 0.5);
     position: relative;
-    padding-left: 50% !important;
+    padding: 0.75rem 1rem !important;
     text-align: right;
     white-space: normal;
     min-height: 3.5rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between; /* Align label left and content right */
+    gap: 1rem;
+    width: 100%;
   }
 
   td:last-child {
@@ -411,19 +428,15 @@ tbody tr:not(.empty-state-row):hover {
 
   td::before {
     content: attr(data-label);
-    position: absolute;
-    left: 1rem;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
+    position: static; /* Switch from absolute position to flow-based */
     text-align: left;
     font-weight: 700;
     color: var(--text-muted);
     font-size: 0.85rem;
+    flex-shrink: 0;
   }
 
   .empty-state-row td {
-    padding-left: 1rem !important;
     text-align: center;
     justify-content: center;
   }
@@ -438,7 +451,7 @@ tbody tr:not(.empty-state-row):hover {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .inventory-grid {
     grid-template-columns: 1fr;
   }
@@ -450,5 +463,92 @@ tbody tr:not(.empty-state-row):hover {
   .primary-btn {
     padding: 1rem;
     font-size: 1rem;
+  }
+}
+
+/* セット数サマリーのスタイル */
+.summary-wrapper {
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(244, 114, 182, 0.05);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.summary-wrapper h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.summary-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  border-left: 4px solid var(--primary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 114, 182, 0.1);
+}
+
+.summary-item-name {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.summary-item-sets {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.summary-item-sets strong {
+  font-size: 1.25rem;
+  color: var(--primary-hover);
+  margin-right: 0.1rem;
+}
+
+.summary-item-detail {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 0.1rem;
+}
+
+.summary-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  color: var(--success);
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 12px;
+}
+
+@media (max-width: 480px) {
+  .summary-list {
+    grid-template-columns: 1fr;
   }
 }
